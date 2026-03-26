@@ -2,8 +2,26 @@ import json
 import os
 import subprocess
 
-with open("/tmp/gh_repos.json", "r") as f:
-    repos = json.load(f)
+def get_repos():
+    print("Fetching repository list from GitHub...")
+    try:
+        result = subprocess.run(
+            ["gh", "repo", "list", "--limit", "1000", "--json", "name"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return json.loads(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Error fetching repositories: {e}")
+        print(e.stderr)
+        return []
+        
+repos = get_repos()
+
+if not repos:
+    print("No repositories found or failed to fetch. Exiting.")
+    exit(1)
 
 base_dir = "/home/freecode/antigrav"
 all_clean = True
