@@ -1,15 +1,17 @@
 import os
 import subprocess
+import sys
 
 TARGET_DIR = "/Users/charlestalk/AntiGravity"
-COMMIT_MSG = "Save artifacts and plans"
 
 def main():
     if not os.path.isdir(TARGET_DIR):
         print(f"Error: Target directory {TARGET_DIR} does not exist.")
         return
 
-    print("Committing and pushing across all repositories...\n" + "-"*30)
+    commit_msg = sys.argv[1] if len(sys.argv) > 1 else "Local commit for updates"
+
+    print(f"Committing local changes across all repositories in {TARGET_DIR}...\n" + "-"*30)
 
     for item in sorted(os.listdir(TARGET_DIR)):
         repo_path = os.path.join(TARGET_DIR, item)
@@ -25,14 +27,12 @@ def main():
                 )
 
                 if status.stdout.strip():
-                    print(f"[{item}] Changes detected. Committing and pushing...")
+                    print(f"[{item}] Changes detected. Committing...")
                     # Add all files
                     subprocess.run(["git", "add", "."], cwd=repo_path, check=True)
                     # Commit changes
-                    subprocess.run(["git", "commit", "-m", COMMIT_MSG], cwd=repo_path, check=True, stdout=subprocess.DEVNULL)
-                    # Push changes
-                    subprocess.run(["git", "push"], cwd=repo_path, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                    print(f"[{item}] Successfully committed and pushed.")
+                    subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_path, check=True, stdout=subprocess.DEVNULL)
+                    print(f"[{item}] Successfully committed.")
                 else:
                     print(f"[{item}] Clean. No changes to commit.")
                     

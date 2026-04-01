@@ -26,7 +26,7 @@ if not repos:
 base_dir = "/Users/charlestalk/AntiGravity"
 all_clean = True
 
-print("Verifying repositories:\n" + "-"*30)
+print("Verifying repositories:\\n" + "-"*30)
 for repo in repos:
     name = repo["name"]
     target_dir = os.path.join(base_dir, name)
