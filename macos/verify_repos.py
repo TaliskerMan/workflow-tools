@@ -25,6 +25,7 @@ if not repos:
 
 base_dir = "/Users/charlestalk/AntiGravity"
 all_clean = True
+issue_repos = []
 
 print("Verifying repositories:\\n" + "-"*30)
 for repo in repos:
@@ -44,15 +45,20 @@ for repo in repos:
             else:
                 print(f"[WARN] {name} is not clean:\\n{status_s}")
                 all_clean = False
+                issue_repos.append((name, "Uncommitted changes (status not clean)"))
         else:
             print(f"[WARN] {name} status issue:\\n{res.stdout}")
             all_clean = False
+            issue_repos.append((name, "Status issue (diverged, behind, or modified)"))
     else:
         print(f"[ERROR] {name} directory missing.")
         all_clean = False
+        issue_repos.append((name, "Directory missing"))
 
 print("-" * 30)
 if all_clean:
     print("All repositories are confirmed up to date and clean.")
 else:
-    print("Some repositories have issues.")
+    print("The following repositories have issues:")
+    for r_name, r_issue in issue_repos:
+        print(f" - {r_name}: {r_issue}")
