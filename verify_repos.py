@@ -23,7 +23,7 @@ if not repos:
     print("No repositories found or failed to fetch. Exiting.")
     exit(1)
 
-base_dir = "/Users/charlestalk/AntiGravity"
+base_dir = "/home/freecode/antigrav"
 all_clean = True
 
 print("Verifying repositories:\n" + "-"*30)

@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 
-TARGET_DIR = "/Users/charlestalk/AntiGravity"
+TARGET_DIR = "/home/freecode/antigrav"
 
 def main():
     if not os.path.isdir(TARGET_DIR):

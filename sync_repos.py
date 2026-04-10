@@ -2,7 +2,7 @@ import subprocess
 import os
 import json
 
-TARGET_DIR = "/Users/charlestalk/AntiGravity"
+TARGET_DIR = "/home/freecode/antigrav"
 
 def get_repos():
     print("Fetching repository list...")

@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-TARGET_DIR = "/Users/charlestalk/AntiGravity"
+TARGET_DIR = "/home/freecode/antigrav"
 COMMIT_MSG = "Save artifacts and plans"
 
 def main():

@@ -1,6 +1,6 @@
 import os
 
-TARGET_DIR = "/Users/charlestalk/AntiGravity"
+TARGET_DIR = "/home/freecode/antigrav"
 
 def init_plans():
     print(f"Scanning {TARGET_DIR} for repositories...")
