@@ -18,7 +18,7 @@ find "$BASE_DIR" -maxdepth 2 -type d -name ".git" 2>/dev/null | sort | while rea
     if [ -n "$(git status --porcelain)" ]; then
         echo "--> Committing changes in $repo"
         git add .
-        git commit -S -m "$COMMIT_MSG"
+        git commit -m "$COMMIT_MSG"
     else
         echo "    No changes to commit in $repo"
     fi
